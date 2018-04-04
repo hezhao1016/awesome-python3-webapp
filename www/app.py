@@ -1,3 +1,11 @@
+# -*- coding:utf-8 -*-
+
+__author__ = 'HeZhao'
+
+'''
+Web 入口
+'''
+
 import logging; logging.basicConfig(level=logging.INFO)
 
 import asyncio, os , json, time
