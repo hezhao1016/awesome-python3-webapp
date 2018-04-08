@@ -6,7 +6,7 @@ __author__ = 'HeZhao'
 实体类
 '''
 
-import logging; logging.basicConfig(level=logging.DEBUG)
+import logging
 import time, uuid
 from www.orm import Model, StringField, IntegerField, BooleanField, FloatField, TextField
 
@@ -18,7 +18,7 @@ class User(Model):
 
     id = StringField(primary_key=True, default=next_id, ddl='varchar(50)')
     email = StringField(ddl='varchar(50)')
-    password = StringField(ddl='varchar(50)')
+    passwd = StringField(ddl='varchar(50)')
     admin = BooleanField()
     name = StringField(ddl='varchar(50)')
     image = StringField(ddl='varchar(500)')
@@ -33,7 +33,7 @@ class Blog(Model):
     user_name = StringField(ddl='varchar(50)')
     user_image = StringField(ddl='varchar(500)')
     name = StringField(ddl='varchar(50)')
-    summary = StringField(ddl='varchar(200)')
+    summary = StringField(ddl='varchar(500)')
     content = TextField()
     created_at = FloatField(default=time.time)
 
@@ -57,9 +57,9 @@ if __name__ == '__main__':
 
     async def test(loop):
         # 创建连接池
-        db_dict = {'user': 'www-data', 'password': 'www-data', 'db': 'awesome'}
+        db_dict = {'user': 'www-data', 'passwd': 'www-data', 'db': 'awesome'}
         await create_pool(loop=loop, **db_dict)
-        u = User(name='Test', email='test@example.com', password='12345', image='about:blank', id='123')
+        u = User(name='Test', email='test@example.com', passwd='12345', image='about:blank', id='123')
         await u.save()
         users = await u.findAll()
         print('list -> %s' % users)
